@@ -15,4 +15,22 @@ public class Coordinate {
     public int getY() {
         return y;
     }
+
+    @Override
+    public int hashCode(){
+        int hashCode = 1;
+        hashCode = hashCode * 37 + x;
+        hashCode = hashCode * 37 + y;
+
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (!(other instanceof Coordinate)){
+            return false;
+        }
+        Coordinate loc = (Coordinate) other;
+        return (this.x == loc.x && this.y == loc.y);
+    }
 }
