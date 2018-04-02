@@ -10,41 +10,29 @@ public class Board {
     public Board(){
     }
 
-    public void init(){
-        System.out.println("init");
-        System.out.println(pieceLoc);
-
-        //Fill team 1 pawns
+    public void setUp(){
         for (int x = 0; x < 10; x = x + 2){
             pieceLoc.put(x + ",0",
                          new Pawn(1));
             pieceLoc.put(x + ",2",
                     new Pawn(1));
+
+            pieceLoc.put(x + ",8",
+                    new Pawn(2));
         }
         for (int x = 1; x < 10; x = x + 2){
             pieceLoc.put(x + ",1",
                     new Pawn(1));
-        }
 
-        //fill in team 2 pawns
-        for (int x = 1; x < 10; x = x + 2){
             pieceLoc.put(x + ",9",
                     new Pawn(2));
             pieceLoc.put(x + ",7",
                     new Pawn(2));
         }
-        for (int x = 0; x < 10; x = x + 2){
-            pieceLoc.put(x + ",8",
-                    new Pawn(2));
-        }
-
-        System.out.println(pieceLoc);
     }
 
     public void printBoard(){
-        System.out.println("print");
-        System.out.println(pieceLoc);
-
+        System.out.println(" :0 1 2 3 4 5 6 7 8 9");
         for(int y = 0; y < 10; y++){
             System.out.print(y + ":");
             for(int x = 0 ; x < 10; x++) {
@@ -59,5 +47,12 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    public void move(String curLoc, String newLoc){
+        Pawn pawn = pieceLoc.get(curLoc);
+        System.out.println(pieceLoc.keySet());
+        pieceLoc.remove(curLoc, pawn);
+        pieceLoc.put(newLoc, pawn);
     }
 }
