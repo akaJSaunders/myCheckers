@@ -49,20 +49,43 @@ public class Board {
         }
     }
 
-    public boolean isOccupied(Coordinate loc){
-        return pieceLoc.containsKey(loc);
+    public boolean isValidMove(Coordinate loc, Coordinate newLoc){
+        int X = loc.getX();
+        int Y = loc.getY();
+        int newX = newLoc.getX();
+        int newY = newLoc.getY();
+
+        if(pieceLoc.containsKey(loc)){
+
+            if(pieceLoc.containsKey(newLoc)){
+                int curTeam = pieceLoc.get(loc).getTeam();
+                int newTeam = pieceLoc.get(newLoc).getTeam();
+                if(curTeam == newTeam){
+                    System.out.println("ERROR: Friendly pawn in the way");
+                    return false;
+                }
+            }
+
+            else if(((newX == X + 1) && (newY == Y + 1)) || ((newX == X + 1) && (newY == Y - 1))
+                                                || ((newX == X - 1) && (newY == Y + 1))
+                                                || ((newX == X - 1) && (newY == Y - 1))){
+                return true;
+
+            }
+            System.out.println("ERROR: Pawn cant make such move");
+            return false;
+        }
+        System.out.println("ERROR: No such pawn exists");
+        return false;
     }
 
-    public void move(Coordinate cur, Coordinate newLoc){
-        if(isOccupied(cur)){
-            Pawn pawn = pieceLoc.get(cur);
+    public void move(Coordinate loc, Coordinate newLoc){
+        if(isValidMove(loc, newLoc)){
+            Pawn pawn = pieceLoc.get(loc);
             System.out.println(pieceLoc.keySet());
-            pieceLoc.remove(cur, pawn);
+            pieceLoc.remove(loc, pawn);
             pieceLoc.put(newLoc, pawn);
             return;
         }
-
-        System.out.println("ERROR: No pawn in such a location");
-
     }
 }

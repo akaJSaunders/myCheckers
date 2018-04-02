@@ -5,8 +5,8 @@ public class Game {
         Board board = new Board();
         board.setUp();
         board.printBoard();
-        Coordinate loc = new Coordinate(10,8);
-        Coordinate newLoc = new Coordinate(5,5);
+        Coordinate loc = new Coordinate(0,0);
+        Coordinate newLoc = new Coordinate(1,1);
         board.move(loc, newLoc);
 
         System.out.println("");
