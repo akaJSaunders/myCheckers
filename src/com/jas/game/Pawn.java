@@ -1,18 +1,13 @@
 package com.jas.game;
 
 public class Pawn {
-    private int x;
-    private int y;
+    private int team;
 
-    public Pawn(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Pawn(int team){
+        this.team = team;
     }
 
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
+    public int getTeam(){
+        return team;
     }
 }
